@@ -1,0 +1,11 @@
+manpage.patch
+c++.patch
+format.patch
+locales.patch
+sk.po.patch
+cs.po.patch
+fix-tests.patch
+use-env-home.patch
+allignment.patch
+fix-formats.patch
+zlib-return-value.patch

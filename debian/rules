@@ -1,0 +1,33 @@
+#!/usr/bin/make -f
+
+#export DH_VERBOSE=1
+
+include /usr/share/quilt/quilt.make
+
+build: build-stamp
+build-stamp: $(QUILT_STAMPFN)
+	dh build --before configure
+	dh_auto_configure -- --with-readline
+	$(MAKE) -C po update-gmo
+	dh build --after configure --before auto_test
+	mkdir -p tmphome/.stardict/dic
+	HOME=`pwd`/tmphome/; export HOME; dh_auto_test
+	dh build --after auto_test
+	touch $@
+
+clean: unpatch
+	dh clean
+	rm -f po/*.gmo
+
+install: build-stamp
+	dh install
+
+binary-arch: install
+	dh binary-arch
+
+binary-indep: 
+	# Nothing to do
+
+binary: binary-arch binary-indep
+
+.PHONY: build clean binary-indep binary-arch binary install 

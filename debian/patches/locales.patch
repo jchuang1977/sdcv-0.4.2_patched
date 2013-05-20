@@ -1,0 +1,335 @@
+Fixes typo in program (choise -> choice).
+http://sourceforge.net/tracker/index.php?func=detail&aid=2125953&group_id=122858&atid=694730
+--- a/po/ru.po
++++ b/po/ru.po
+@@ -8,7 +8,7 @@
+ msgstr ""
+ "Project-Id-Version: sdcv 0.3\n"
+ "Report-Msgid-Bugs-To: dushistov@mail.ru\n"
+-"POT-Creation-Date: 2006-04-24 15:18+0400\n"
++"POT-Creation-Date: 2008-09-24 10:54+0200\n"
+ "PO-Revision-Date: 2006-04-24 15:20+0300\n"
+ "Last-Translator: Evgeniy Dushistov <dushistov@mail.ru>\n"
+ "Language-Team: Russian <ru@li.org>\n"
+@@ -105,35 +105,35 @@
+ msgid "There are no words/phrases to translate.\n"
+ msgstr "Не задано слова/фразы для перевода.\n"
+ 
+-#: src/libwrapper.cpp:245
++#: src/libwrapper.cpp:246
+ msgid "popen failed"
+ msgstr "функция popen завершилась с ошибкой"
+ 
+-#: src/libwrapper.cpp:282
++#: src/libwrapper.cpp:283
+ #, c-format
+ msgid "Can not convert %s to utf8.\n"
+ msgstr "Не могу преобразовать %s в utf8.\n"
+ 
+-#: src/libwrapper.cpp:339 src/libwrapper.cpp:371
++#: src/libwrapper.cpp:340 src/libwrapper.cpp:372
+ #, c-format
+ msgid "Found %d items, similar to %s.\n"
+ msgstr "Найдено %d слов, похожих на %s.\n"
+ 
+-#: src/libwrapper.cpp:352
++#: src/libwrapper.cpp:353
+ #, c-format
+ msgid "Your choice[-1 to abort]: "
+ msgstr "Ваш выбор[-1 - отмена]:"
+ 
+-#: src/libwrapper.cpp:366
++#: src/libwrapper.cpp:367
+ #, c-format
+ msgid ""
+-"Invalid choise.\n"
++"Invalid choice.\n"
+ "It must be from 0 to %d or -1.\n"
+ msgstr ""
+ "Неправильный выбор.\n"
+ "Должно быть от 0 до %d или -1.\n"
+ 
+-#: src/libwrapper.cpp:382
++#: src/libwrapper.cpp:383
+ #, c-format
+ msgid "Nothing similar to %s, sorry :(\n"
+ msgstr "Ничего похожего на %s, извините :(\n"
+--- a/po/sdcv.pot
++++ b/po/sdcv.pot
+@@ -8,7 +8,7 @@
+ msgstr ""
+ "Project-Id-Version: PACKAGE VERSION\n"
+ "Report-Msgid-Bugs-To: dushistov@mail.ru\n"
+-"POT-Creation-Date: 2006-04-24 15:18+0400\n"
++"POT-Creation-Date: 2008-09-24 10:54+0200\n"
+ "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+ "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+ "Language-Team: LANGUAGE <LL@li.org>\n"
+@@ -96,33 +96,33 @@
+ msgid "There are no words/phrases to translate.\n"
+ msgstr ""
+ 
+-#: src/libwrapper.cpp:245
++#: src/libwrapper.cpp:246
+ msgid "popen failed"
+ msgstr ""
+ 
+-#: src/libwrapper.cpp:282
++#: src/libwrapper.cpp:283
+ #, c-format
+ msgid "Can not convert %s to utf8.\n"
+ msgstr ""
+ 
+-#: src/libwrapper.cpp:339 src/libwrapper.cpp:371
++#: src/libwrapper.cpp:340 src/libwrapper.cpp:372
+ #, c-format
+ msgid "Found %d items, similar to %s.\n"
+ msgstr ""
+ 
+-#: src/libwrapper.cpp:352
++#: src/libwrapper.cpp:353
+ #, c-format
+ msgid "Your choice[-1 to abort]: "
+ msgstr ""
+ 
+-#: src/libwrapper.cpp:366
++#: src/libwrapper.cpp:367
+ #, c-format
+ msgid ""
+-"Invalid choise.\n"
++"Invalid choice.\n"
+ "It must be from 0 to %d or -1.\n"
+ msgstr ""
+ 
+-#: src/libwrapper.cpp:382
++#: src/libwrapper.cpp:383
+ #, c-format
+ msgid "Nothing similar to %s, sorry :(\n"
+ msgstr ""
+--- a/po/sk.po
++++ b/po/sk.po
+@@ -6,7 +6,7 @@
+ msgstr ""
+ "Project-Id-Version: sdcv 0.3.2\n"
+ "Report-Msgid-Bugs-To: dushistov@mail.ru\n"
+-"POT-Creation-Date: 2006-04-24 15:18+0400\n"
++"POT-Creation-Date: 2008-09-24 10:54+0200\n"
+ "PO-Revision-Date: 2005-01-04 20:19+0100\n"
+ "Last-Translator: Zdenko Podobnц╫ <zdpo@mailbox.sk>\n"
+ "Language-Team: Slovak <<sk-i18n@lists.linux.sk>>\n"
+@@ -102,35 +102,35 @@
+ msgid "There are no words/phrases to translate.\n"
+ msgstr "Nie je д█o preloе╬iе╔.\n"
+ 
+-#: src/libwrapper.cpp:245
++#: src/libwrapper.cpp:246
+ msgid "popen failed"
+ msgstr ""
+ 
+-#: src/libwrapper.cpp:282
++#: src/libwrapper.cpp:283
+ #, c-format
+ msgid "Can not convert %s to utf8.\n"
+ msgstr "nie je moе╬nц╘ konvertovaе╔ %s na utf8.\n"
+ 
+-#: src/libwrapper.cpp:339 src/libwrapper.cpp:371
++#: src/libwrapper.cpp:340 src/libwrapper.cpp:372
+ #, c-format
+ msgid "Found %d items, similar to %s.\n"
+ msgstr "Nц║jdenц╘ %d poloе╬iek, podobnц╫ch %s,\n"
+ 
+-#: src/libwrapper.cpp:352
++#: src/libwrapper.cpp:353
+ #, fuzzy, c-format
+ msgid "Your choice[-1 to abort]: "
+ msgstr "Vaе║a voд╬ba: "
+ 
+-#: src/libwrapper.cpp:366
++#: src/libwrapper.cpp:367
+ #, fuzzy, c-format
+ msgid ""
+-"Invalid choise.\n"
++"Invalid choice.\n"
+ "It must be from 0 to %d or -1.\n"
+ msgstr ""
+ "Neplatnц║ voд╬ba.\n"
+ "Musц╜ byе╔ od 0 po %d.\n"
+ 
+-#: src/libwrapper.cpp:382
++#: src/libwrapper.cpp:383
+ #, c-format
+ msgid "Nothing similar to %s, sorry :(\n"
+ msgstr "д╫utujem, niд█ sa nepodobц║ na %s :(\n"
+--- a/po/uk.po
++++ b/po/uk.po
+@@ -8,7 +8,7 @@
+ msgstr ""
+ "Project-Id-Version: sdcv 0.3\n"
+ "Report-Msgid-Bugs-To: dushistov@mail.ru\n"
+-"POT-Creation-Date: 2006-04-24 15:18+0400\n"
++"POT-Creation-Date: 2008-09-24 10:54+0200\n"
+ "PO-Revision-Date: 2004-12-14 17:54+0300\n"
+ "Last-Translator:  <dubyk@lsl.lviv.ua>\n"
+ "Language-Team: Ukrainian <dubyk@lsl.lviv.ua>\n"
+@@ -105,35 +105,35 @@
+ msgid "There are no words/phrases to translate.\n"
+ msgstr "п²п╣ п╥п╟п╢п╟п╫п╬ я│п╩п╬п╡п╟/я└я─п╟п╥п╦ п╢п╩я▐ п©п╣я─п╣п╨п╩п╟п╢я┐.\n"
+ 
+-#: src/libwrapper.cpp:245
++#: src/libwrapper.cpp:246
+ msgid "popen failed"
+ msgstr ""
+ 
+-#: src/libwrapper.cpp:282
++#: src/libwrapper.cpp:283
+ #, c-format
+ msgid "Can not convert %s to utf8.\n"
+ msgstr "п²п╣ п╪п╬п╤я┐ п©п╣я─п╣я┌п╡п╬я─п╦я┌п╦ %s я┐ utf8.\n"
+ 
+-#: src/libwrapper.cpp:339 src/libwrapper.cpp:371
++#: src/libwrapper.cpp:340 src/libwrapper.cpp:372
+ #, c-format
+ msgid "Found %d items, similar to %s.\n"
+ msgstr "п≈п╫п╟п╧п╢п╣п╫п╬ %d я│п╩я√п╡, я│я┘п╬п╤п╦я┘ п╫п╟ %s.\n"
+ 
+-#: src/libwrapper.cpp:352
++#: src/libwrapper.cpp:353
+ #, fuzzy, c-format
+ msgid "Your choice[-1 to abort]: "
+ msgstr "п▓п╟я┬ п╡п╦п╠я√я─: "
+ 
+-#: src/libwrapper.cpp:366
++#: src/libwrapper.cpp:367
+ #, fuzzy, c-format
+ msgid ""
+-"Invalid choise.\n"
++"Invalid choice.\n"
+ "It must be from 0 to %d or -1.\n"
+ msgstr ""
+ "п²п╣п©я─п╟п╡п╦п╩я▄п╫п╦п╧ п╡п╦п╠я√я─.\n"
+ "п÷п╬п╡п╦п╫п╫п╬ п╠я┐я┌п╦ п╡я√п╢ 0 п╢п╬ %d.\n"
+ 
+-#: src/libwrapper.cpp:382
++#: src/libwrapper.cpp:383
+ #, c-format
+ msgid "Nothing similar to %s, sorry :(\n"
+ msgstr "п²я√я┤п╬пЁп╬ я│я┘п╬п╤п╬пЁп╬ п╫п╟ %s, п╢п╟я─я┐п╧я┌п╣ :(\n"
+--- a/po/zh_CN.po
++++ b/po/zh_CN.po
+@@ -6,7 +6,7 @@
+ msgstr ""
+ "Project-Id-Version: sdcv 0.3\n"
+ "Report-Msgid-Bugs-To: dushistov@mail.ru\n"
+-"POT-Creation-Date: 2006-04-24 15:18+0400\n"
++"POT-Creation-Date: 2008-09-24 10:54+0200\n"
+ "PO-Revision-Date: 2005-1-17 00:58+0800\n"
+ "Last-Translator: Cai Qian <caiqian@gnome.org>\n"
+ "Language-Team: Simplified Chinese\n"
+@@ -96,35 +96,35 @@
+ msgid "There are no words/phrases to translate.\n"
+ msgstr "Ф╡║Ф°┴Д╬⌡Г©╩Х╞▒Г └Е█∙Х╞█Ф┬√Г÷╜Х╞╜Ц─┌\n"
+ 
+-#: src/libwrapper.cpp:245
++#: src/libwrapper.cpp:246
+ msgid "popen failed"
+ msgstr ""
+ 
+-#: src/libwrapper.cpp:282
++#: src/libwrapper.cpp:283
+ #, c-format
+ msgid "Can not convert %s to utf8.\n"
+ msgstr "Ф≈═ФЁ∙Е╟├ %s Х╫╛Ф█╒Д╦╨ UTF-8Ц─┌\n"
+ 
+-#: src/libwrapper.cpp:339 src/libwrapper.cpp:371
++#: src/libwrapper.cpp:340 src/libwrapper.cpp:372
+ #, c-format
+ msgid "Found %d items, similar to %s.\n"
+ msgstr "Е▐▒Г▌╟ %d Ф²║Х╝╟Е╫∙Е▓▄ %s Г⌡╦Д╪╪Ц─┌\n"
+ 
+-#: src/libwrapper.cpp:352
++#: src/libwrapper.cpp:353
+ #, fuzzy, c-format
+ msgid "Your choice[-1 to abort]: "
+ msgstr "Ф┌╗Г └И─┴Ф▀╘Д╦╨О╪ "
+ 
+-#: src/libwrapper.cpp:366
++#: src/libwrapper.cpp:367
+ #, fuzzy, c-format
+ msgid ""
+-"Invalid choise.\n"
++"Invalid choice.\n"
+ "It must be from 0 to %d or -1.\n"
+ msgstr ""
+ "Ф≈═Ф∙┬Г └И─┴Ф▀╘Ц─┌\n"
+ "Е©┘И║╩Ф≤╞ 0 Е┬╟ %dЦ─┌\n"
+ 
+-#: src/libwrapper.cpp:382
++#: src/libwrapper.cpp:383
+ #, c-format
+ msgid "Nothing similar to %s, sorry :(\n"
+ msgstr "Е╞╧Д╦█Х╣╥О╪▄Ф╡║Ф°┴Е▐▒Г▌╟Е▓▄ %s Г⌡╦Д╪╪Г └ :(\n"
+--- a/po/zh_TW.po
++++ b/po/zh_TW.po
+@@ -7,7 +7,7 @@
+ msgstr ""
+ "Project-Id-Version: sdcv 0.4\n"
+ "Report-Msgid-Bugs-To: dushistov@mail.ru\n"
+-"POT-Creation-Date: 2006-04-24 15:18+0400\n"
++"POT-Creation-Date: 2008-09-24 10:54+0200\n"
+ "PO-Revision-Date: 2005-10-31 17:14+0800\n"
+ "Last-Translator: Wei-Lun Chao <chaoweilun@pcmail.com.tw>\n"
+ "Language-Team: Chinese (traditional) <zh-l10n@linux.org.tw>\n"
+@@ -98,35 +98,35 @@
+ msgid "There are no words/phrases to translate.\n"
+ msgstr "Ф╡▓Ф°┴Е▐╞Д╬⌡Г©╩Х╜╞Г └Е√╝Е╜≈Ф┬√Г┴┤Х╙·Ц─┌\n"
+ 
+-#: src/libwrapper.cpp:245
++#: src/libwrapper.cpp:246
+ msgid "popen failed"
+ msgstr ""
+ 
+-#: src/libwrapper.cpp:282
++#: src/libwrapper.cpp:283
+ #, c-format
+ msgid "Can not convert %s to utf8.\n"
+ msgstr "Г└║ФЁ∙Е╟┤ %s Х╫┴Ф▐⌡Г┌╨ UTF-8Ц─┌\n"
+ 
+-#: src/libwrapper.cpp:339 src/libwrapper.cpp:371
++#: src/libwrapper.cpp:340 src/libwrapper.cpp:372
+ #, c-format
+ msgid "Found %d items, similar to %s.\n"
+ msgstr "Ф┴╬Е┬╟ %d И═┘Г╢─И▄└Е▓▄ %s Г⌡╦Д╪╪Ц─┌\n"
+ 
+-#: src/libwrapper.cpp:352
++#: src/libwrapper.cpp:353
+ #, fuzzy, c-format
+ msgid "Your choice[-1 to abort]: "
+ msgstr "Ф┌╗Г └И│╦Ф⌠┤Г┌╨О╪ "
+ 
+-#: src/libwrapper.cpp:366
++#: src/libwrapper.cpp:367
+ #, fuzzy, c-format
+ msgid ""
+-"Invalid choise.\n"
++"Invalid choice.\n"
+ "It must be from 0 to %d or -1.\n"
+ msgstr ""
+ "Г└║Ф∙┬Г └И│╦Ф⌠┤Ц─┌\n"
+ "Е©┘И═┬Ф≤╞Е╬· 0 Е┬╟ %dЦ─┌\n"
+ 
+-#: src/libwrapper.cpp:382
++#: src/libwrapper.cpp:383
+ #, c-format
+ msgid "Nothing similar to %s, sorry :(\n"
+ msgstr "Ф┼╠Ф╜┴О╪▄Ф╡▓Ф°┴Е▓▄ %s Г⌡╦Д╪╪Х─┘ :(\n"
+--- a/src/libwrapper.cpp
++++ b/src/libwrapper.cpp
+@@ -364,7 +364,7 @@
+ 				} else if (choise==-1)
+ 					break;
+ 				else
+-					printf(_("Invalid choise.\nIt must be from 0 to %d or -1.\n"), 
++					printf(_("Invalid choice.\nIt must be from 0 to %d or -1.\n"), 
+ 					       res_list.size()-1);	  
+ 			}		
+ 		} else {

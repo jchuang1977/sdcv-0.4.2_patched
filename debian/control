@@ -1,0 +1,17 @@
+Source: sdcv
+Priority: optional
+Section: utils
+Maintainer: Michal Čihař <nijel@debian.org>
+Build-Depends: debhelper (>= 7.0.0), gettext, zlib1g-dev, pkg-config, libglib2.0-dev, libreadline5-dev | libreadline-dev, quilt (>= 0.40)
+Standards-Version: 3.8.0
+Homepage: http://sdcv.sourceforge.net/
+Vcs-Browser: http://svn.debian.org/wsvn/collab-maint/deb-maint/sdcv/trunk/
+Vcs-Svn: svn://svn.debian.org/collab-maint/deb-maint/sdcv/trunk/
+
+Package: sdcv
+Section: utils
+Architecture: any
+Depends: ${shlibs:Depends}
+Description: StarDict Console Version
+ sdcv is simple, cross-platform text-base utility for work with dictionaries in
+ StarDict's format.

@@ -1,0 +1,480 @@
+utils.o utils.o: utils.cpp ../config.h \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/cstdlib \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/arm-linux/bits/c++config.h \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/arm-linux/bits/os_defines.h \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/features.h \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/sys/cdefs.h \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/gnu/stubs.h \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/cstddef \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/include/stddef.h \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/stdlib.h \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/bits/waitflags.h \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/bits/waitstatus.h \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/endian.h \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/bits/endian.h \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/xlocale.h \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/sys/types.h \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/bits/types.h \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/bits/wordsize.h \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/bits/typesizes.h \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/time.h \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/sys/select.h \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/bits/select.h \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/bits/sigset.h \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/bits/time.h \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/sys/sysmacros.h \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/bits/pthreadtypes.h \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/bits/sched.h \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/alloca.h \
+  /home/andy/nanox/fakeroot//include/glib-2.0/glib.h \
+  /home/andy/nanox/fakeroot//include/glib-2.0/glib/galloca.h \
+  /home/andy/nanox/fakeroot//include/glib-2.0/glib/gtypes.h \
+  /home/andy/nanox/fakeroot//lib/glib-2.0/include/glibconfig.h \
+  /home/andy/nanox/fakeroot//include/glib-2.0/glib/gmacros.h \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/include/limits.h \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/include/syslimits.h \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/limits.h \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/bits/posix1_lim.h \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/bits/local_lim.h \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/linux/limits.h \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/bits/posix2_lim.h \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/bits/xopen_lim.h \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/bits/stdio_lim.h \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/include/float.h \
+  /home/andy/nanox/fakeroot//include/glib-2.0/glib/garray.h \
+  /home/andy/nanox/fakeroot//include/glib-2.0/glib/gasyncqueue.h \
+  /home/andy/nanox/fakeroot//include/glib-2.0/glib/gthread.h \
+  /home/andy/nanox/fakeroot//include/glib-2.0/glib/gerror.h \
+  /home/andy/nanox/fakeroot//include/glib-2.0/glib/gquark.h \
+  /home/andy/nanox/fakeroot//include/glib-2.0/glib/gatomic.h \
+  /home/andy/nanox/fakeroot//include/glib-2.0/glib/gbacktrace.h \
+  /home/andy/nanox/fakeroot//include/glib-2.0/glib/gcache.h \
+  /home/andy/nanox/fakeroot//include/glib-2.0/glib/glist.h \
+  /home/andy/nanox/fakeroot//include/glib-2.0/glib/gmem.h \
+  /home/andy/nanox/fakeroot//include/glib-2.0/glib/gslice.h \
+  /home/andy/nanox/fakeroot//include/glib-2.0/glib/gcompletion.h \
+  /home/andy/nanox/fakeroot//include/glib-2.0/glib/gconvert.h \
+  /home/andy/nanox/fakeroot//include/glib-2.0/glib/gdataset.h \
+  /home/andy/nanox/fakeroot//include/glib-2.0/glib/gdate.h \
+  /home/andy/nanox/fakeroot//include/glib-2.0/glib/gdir.h \
+  /home/andy/nanox/fakeroot//include/glib-2.0/glib/gfileutils.h \
+  /home/andy/nanox/fakeroot//include/glib-2.0/glib/ghash.h \
+  /home/andy/nanox/fakeroot//include/glib-2.0/glib/ghook.h \
+  /home/andy/nanox/fakeroot//include/glib-2.0/glib/giochannel.h \
+  /home/andy/nanox/fakeroot//include/glib-2.0/glib/gmain.h \
+  /home/andy/nanox/fakeroot//include/glib-2.0/glib/gslist.h \
+  /home/andy/nanox/fakeroot//include/glib-2.0/glib/gstring.h \
+  /home/andy/nanox/fakeroot//include/glib-2.0/glib/gunicode.h \
+  /home/andy/nanox/fakeroot//include/glib-2.0/glib/gutils.h \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/include/stdarg.h \
+  /home/andy/nanox/fakeroot//include/glib-2.0/glib/gkeyfile.h \
+  /home/andy/nanox/fakeroot//include/glib-2.0/glib/gmappedfile.h \
+  /home/andy/nanox/fakeroot//include/glib-2.0/glib/gmarkup.h \
+  /home/andy/nanox/fakeroot//include/glib-2.0/glib/gmessages.h \
+  /home/andy/nanox/fakeroot//include/glib-2.0/glib/gnode.h \
+  /home/andy/nanox/fakeroot//include/glib-2.0/glib/goption.h \
+  /home/andy/nanox/fakeroot//include/glib-2.0/glib/gpattern.h \
+  /home/andy/nanox/fakeroot//include/glib-2.0/glib/gprimes.h \
+  /home/andy/nanox/fakeroot//include/glib-2.0/glib/gqsort.h \
+  /home/andy/nanox/fakeroot//include/glib-2.0/glib/gqueue.h \
+  /home/andy/nanox/fakeroot//include/glib-2.0/glib/grand.h \
+  /home/andy/nanox/fakeroot//include/glib-2.0/glib/grel.h \
+  /home/andy/nanox/fakeroot//include/glib-2.0/glib/gscanner.h \
+  /home/andy/nanox/fakeroot//include/glib-2.0/glib/gshell.h \
+  /home/andy/nanox/fakeroot//include/glib-2.0/glib/gspawn.h \
+  /home/andy/nanox/fakeroot//include/glib-2.0/glib/gstrfuncs.h \
+  /home/andy/nanox/fakeroot//include/glib-2.0/glib/gthreadpool.h \
+  /home/andy/nanox/fakeroot//include/glib-2.0/glib/gtimer.h \
+  /home/andy/nanox/fakeroot//include/glib-2.0/glib/gtree.h \
+  /home/andy/nanox/fakeroot//include/glib-2.0/glib/gi18n.h \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/libintl.h \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/locale.h \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/bits/locale.h \
+  utils.hpp \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/string \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/bits/stringfwd.h \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/bits/char_traits.h \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/cstring \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/string.h \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/bits/stl_algobase.h \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/climits \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/new \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/exception \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/iosfwd \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/arm-linux/bits/c++locale.h \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/clocale \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/cstdio \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/stdio.h \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/libio.h \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/_G_config.h \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/wchar.h \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/bits/wchar.h \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/gconv.h \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/bits/sys_errlist.h \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/bits/stdio.h \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/arm-linux/bits/c++io.h \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/arm-linux/bits/gthr.h \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/arm-linux/bits/gthr-default.h \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/pthread.h \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/sched.h \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/signal.h \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/bits/initspin.h \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/bits/sigthread.h \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/unistd.h \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/bits/posix_opt.h \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/bits/environments.h \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/bits/confname.h \
+  ./getopt.h \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/cctype \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/ctype.h \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/bits/postypes.h \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/cwchar \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/ctime \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/stdint.h \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/bits/functexcept.h \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/exception_defines.h \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/bits/stl_pair.h \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/bits/type_traits.h \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/bits/stl_iterator_base_types.h \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/bits/stl_iterator_base_funcs.h \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/bits/concept_check.h \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/bits/stl_iterator.h \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/debug/debug.h \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/cassert \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/assert.h \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/memory \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/bits/allocator.h \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/arm-linux/bits/c++allocator.h \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/ext/new_allocator.h \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/bits/stl_construct.h \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/bits/stl_uninitialized.h \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/bits/stl_raw_storage_iter.h \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/bits/stl_function.h \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/bits/basic_string.h \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/bits/atomicity.h \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/arm-linux/bits/atomic_word.h \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/algorithm \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/bits/stl_algo.h \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/bits/stl_heap.h \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/bits/stl_tempbuf.h \
+  /usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/bits/basic_string.tcc
+
+../config.h:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/cstdlib:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/arm-linux/bits/c++config.h:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/arm-linux/bits/os_defines.h:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/features.h:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/sys/cdefs.h:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/gnu/stubs.h:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/cstddef:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/include/stddef.h:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/stdlib.h:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/bits/waitflags.h:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/bits/waitstatus.h:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/endian.h:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/bits/endian.h:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/xlocale.h:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/sys/types.h:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/bits/types.h:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/bits/wordsize.h:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/bits/typesizes.h:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/time.h:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/sys/select.h:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/bits/select.h:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/bits/sigset.h:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/bits/time.h:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/sys/sysmacros.h:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/bits/pthreadtypes.h:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/bits/sched.h:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/alloca.h:
+
+/home/andy/nanox/fakeroot//include/glib-2.0/glib.h:
+
+/home/andy/nanox/fakeroot//include/glib-2.0/glib/galloca.h:
+
+/home/andy/nanox/fakeroot//include/glib-2.0/glib/gtypes.h:
+
+/home/andy/nanox/fakeroot//lib/glib-2.0/include/glibconfig.h:
+
+/home/andy/nanox/fakeroot//include/glib-2.0/glib/gmacros.h:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/include/limits.h:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/include/syslimits.h:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/limits.h:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/bits/posix1_lim.h:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/bits/local_lim.h:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/linux/limits.h:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/bits/posix2_lim.h:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/bits/xopen_lim.h:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/bits/stdio_lim.h:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/include/float.h:
+
+/home/andy/nanox/fakeroot//include/glib-2.0/glib/garray.h:
+
+/home/andy/nanox/fakeroot//include/glib-2.0/glib/gasyncqueue.h:
+
+/home/andy/nanox/fakeroot//include/glib-2.0/glib/gthread.h:
+
+/home/andy/nanox/fakeroot//include/glib-2.0/glib/gerror.h:
+
+/home/andy/nanox/fakeroot//include/glib-2.0/glib/gquark.h:
+
+/home/andy/nanox/fakeroot//include/glib-2.0/glib/gatomic.h:
+
+/home/andy/nanox/fakeroot//include/glib-2.0/glib/gbacktrace.h:
+
+/home/andy/nanox/fakeroot//include/glib-2.0/glib/gcache.h:
+
+/home/andy/nanox/fakeroot//include/glib-2.0/glib/glist.h:
+
+/home/andy/nanox/fakeroot//include/glib-2.0/glib/gmem.h:
+
+/home/andy/nanox/fakeroot//include/glib-2.0/glib/gslice.h:
+
+/home/andy/nanox/fakeroot//include/glib-2.0/glib/gcompletion.h:
+
+/home/andy/nanox/fakeroot//include/glib-2.0/glib/gconvert.h:
+
+/home/andy/nanox/fakeroot//include/glib-2.0/glib/gdataset.h:
+
+/home/andy/nanox/fakeroot//include/glib-2.0/glib/gdate.h:
+
+/home/andy/nanox/fakeroot//include/glib-2.0/glib/gdir.h:
+
+/home/andy/nanox/fakeroot//include/glib-2.0/glib/gfileutils.h:
+
+/home/andy/nanox/fakeroot//include/glib-2.0/glib/ghash.h:
+
+/home/andy/nanox/fakeroot//include/glib-2.0/glib/ghook.h:
+
+/home/andy/nanox/fakeroot//include/glib-2.0/glib/giochannel.h:
+
+/home/andy/nanox/fakeroot//include/glib-2.0/glib/gmain.h:
+
+/home/andy/nanox/fakeroot//include/glib-2.0/glib/gslist.h:
+
+/home/andy/nanox/fakeroot//include/glib-2.0/glib/gstring.h:
+
+/home/andy/nanox/fakeroot//include/glib-2.0/glib/gunicode.h:
+
+/home/andy/nanox/fakeroot//include/glib-2.0/glib/gutils.h:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/include/stdarg.h:
+
+/home/andy/nanox/fakeroot//include/glib-2.0/glib/gkeyfile.h:
+
+/home/andy/nanox/fakeroot//include/glib-2.0/glib/gmappedfile.h:
+
+/home/andy/nanox/fakeroot//include/glib-2.0/glib/gmarkup.h:
+
+/home/andy/nanox/fakeroot//include/glib-2.0/glib/gmessages.h:
+
+/home/andy/nanox/fakeroot//include/glib-2.0/glib/gnode.h:
+
+/home/andy/nanox/fakeroot//include/glib-2.0/glib/goption.h:
+
+/home/andy/nanox/fakeroot//include/glib-2.0/glib/gpattern.h:
+
+/home/andy/nanox/fakeroot//include/glib-2.0/glib/gprimes.h:
+
+/home/andy/nanox/fakeroot//include/glib-2.0/glib/gqsort.h:
+
+/home/andy/nanox/fakeroot//include/glib-2.0/glib/gqueue.h:
+
+/home/andy/nanox/fakeroot//include/glib-2.0/glib/grand.h:
+
+/home/andy/nanox/fakeroot//include/glib-2.0/glib/grel.h:
+
+/home/andy/nanox/fakeroot//include/glib-2.0/glib/gscanner.h:
+
+/home/andy/nanox/fakeroot//include/glib-2.0/glib/gshell.h:
+
+/home/andy/nanox/fakeroot//include/glib-2.0/glib/gspawn.h:
+
+/home/andy/nanox/fakeroot//include/glib-2.0/glib/gstrfuncs.h:
+
+/home/andy/nanox/fakeroot//include/glib-2.0/glib/gthreadpool.h:
+
+/home/andy/nanox/fakeroot//include/glib-2.0/glib/gtimer.h:
+
+/home/andy/nanox/fakeroot//include/glib-2.0/glib/gtree.h:
+
+/home/andy/nanox/fakeroot//include/glib-2.0/glib/gi18n.h:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/libintl.h:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/locale.h:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/bits/locale.h:
+
+utils.hpp:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/string:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/bits/stringfwd.h:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/bits/char_traits.h:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/cstring:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/string.h:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/bits/stl_algobase.h:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/climits:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/new:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/exception:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/iosfwd:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/arm-linux/bits/c++locale.h:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/clocale:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/cstdio:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/stdio.h:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/libio.h:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/_G_config.h:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/wchar.h:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/bits/wchar.h:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/gconv.h:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/bits/sys_errlist.h:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/bits/stdio.h:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/arm-linux/bits/c++io.h:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/arm-linux/bits/gthr.h:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/arm-linux/bits/gthr-default.h:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/pthread.h:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/sched.h:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/signal.h:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/bits/initspin.h:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/bits/sigthread.h:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/unistd.h:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/bits/posix_opt.h:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/bits/environments.h:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/bits/confname.h:
+
+./getopt.h:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/cctype:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/ctype.h:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/bits/postypes.h:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/cwchar:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/ctime:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/stdint.h:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/bits/functexcept.h:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/exception_defines.h:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/bits/stl_pair.h:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/bits/type_traits.h:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/bits/stl_iterator_base_types.h:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/bits/stl_iterator_base_funcs.h:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/bits/concept_check.h:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/bits/stl_iterator.h:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/debug/debug.h:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/cassert:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../arm-linux/sys-include/assert.h:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/memory:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/bits/allocator.h:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/arm-linux/bits/c++allocator.h:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/ext/new_allocator.h:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/bits/stl_construct.h:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/bits/stl_uninitialized.h:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/bits/stl_raw_storage_iter.h:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/bits/stl_function.h:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/bits/basic_string.h:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/bits/atomicity.h:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/arm-linux/bits/atomic_word.h:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/algorithm:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/bits/stl_algo.h:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/bits/stl_heap.h:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/bits/stl_tempbuf.h:
+
+/usr/local/arm/3.4.1/lib/gcc/arm-linux/3.4.1/../../../../include/c++/3.4.1/bits/basic_string.tcc:

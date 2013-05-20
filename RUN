@@ -1,0 +1,23 @@
+#!/bin/sh -x
+
+#CONFIG_SITE=${PWD}/../ARM.config.site
+
+AR="/usr/local/arm/3.4.1/bin/arm-linux-ar"
+CC="/usr/local/arm/3.4.1/bin/arm-linux-gcc"
+RANLIB="/usr/local/arm/3.4.1/bin/arm-linux-ranlib"
+CXX="/usr/local/arm/3.4.1/bin/arm-linux-g++"
+
+LD="/usr/local/arm/3.4.1/bin/arm-linux-ld"
+
+if [ -e Makefile ] ; then
+	exit 0
+fi
+
+CPPFLAGS="-I/home/andy/nanox/fakeroot/include -I/home/andy/nanox/fakeroot/include/readline -I/home/andy/nanox/fakeroot/include/ncurses" \
+LDFLAGS="-L/home/andy/nanox/fakeroot/lib -lz -liconv  -lncurses -ltermcap" \
+./configure --host=arm-unknown-linux \
+			--target=arm-unknown-linux \
+			--build=i686-pc-linux \
+			--prefix=/home/andy/nanox/fakeroot \
+			--with-libiconv-prefix=/home/andy/nanox/fakeroot \
+			--with-readline=/home/andy/nanox/fakeroot

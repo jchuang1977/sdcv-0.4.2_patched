@@ -1,0 +1,1299 @@
+--- sdcv-0.4.2.orig/debian/watch
++++ sdcv-0.4.2/debian/watch
+@@ -0,0 +1,2 @@
++version=3
++http://sf.net/sdcv/sdcv-(.*)\.tar\.bz2
+--- sdcv-0.4.2.orig/debian/docs
++++ sdcv-0.4.2/debian/docs
+@@ -0,0 +1,4 @@
++doc/DICTFILE_FORMAT
++BUGS
++NEWS
++README
+--- sdcv-0.4.2.orig/debian/README.source
++++ sdcv-0.4.2/debian/README.source
+@@ -0,0 +1,57 @@
++This package uses quilt to manage all modifications to the upstream
++source.  Changes are stored in the source package as diffs in
++debian/patches and applied during the build.
++
++To configure quilt to use debian/patches instead of patches, you want
++either to export QUILT_PATCHES=debian/patches in your environment
++or use this snippet in your ~/.quiltrc:
++
++    for where in ./ ../ ../../ ../../../ ../../../../ ../../../../../; do
++        if [ -e ${where}debian/rules -a -d ${where}debian/patches ]; then
++                export QUILT_PATCHES=debian/patches
++        fi
++    done
++
++To get the fully patched source after unpacking the source package, cd to
++the root level of the source package and run:
++
++    quilt push -a
++
++The last patch listed in debian/patches/series will become the current
++patch.
++
++To add a new set of changes, first run quilt push -a, and then run:
++
++    quilt new <patch>
++
++where <patch> is a descriptive name for the patch, used as the filename in
++debian/patches.  Then, for every file that will be modified by this patch,
++run:
++
++    quilt add <file>
++
++before editing those files.  You must tell quilt with quilt add what files
++will be part of the patch before making changes or quilt will not work
++properly.  After editing the files, run:
++
++    quilt refresh
++
++to save the results as a patch.
++
++Alternately, if you already have an external patch and you just want to
++add it to the build system, run quilt push -a and then:
++
++    quilt import -P <patch> /path/to/patch
++    quilt push -a
++
++(add -p 0 to quilt import if needed). <patch> as above is the filename to
++use in debian/patches.  The last quilt push -a will apply the patch to
++make sure it works properly.
++
++To remove an existing patch from the list of patches that will be applied,
++run:
++
++    quilt delete <patch>
++
++You may need to run quilt pop -a to unapply patches first before running
++this command.
+--- sdcv-0.4.2.orig/debian/control
++++ sdcv-0.4.2/debian/control
+@@ -0,0 +1,17 @@
++Source: sdcv
++Priority: optional
++Section: utils
++Maintainer: Michal Čihař <nijel@debian.org>
++Build-Depends: debhelper (>= 7.0.0), gettext, zlib1g-dev, pkg-config, libglib2.0-dev, libreadline5-dev | libreadline-dev, quilt (>= 0.40)
++Standards-Version: 3.8.0
++Homepage: http://sdcv.sourceforge.net/
++Vcs-Browser: http://svn.debian.org/wsvn/collab-maint/deb-maint/sdcv/trunk/
++Vcs-Svn: svn://svn.debian.org/collab-maint/deb-maint/sdcv/trunk/
++
++Package: sdcv
++Section: utils
++Architecture: any
++Depends: ${shlibs:Depends}
++Description: StarDict Console Version
++ sdcv is simple, cross-platform text-base utility for work with dictionaries in
++ StarDict's format.
+--- sdcv-0.4.2.orig/debian/copyright
++++ sdcv-0.4.2/debian/copyright
+@@ -0,0 +1,19 @@
++Format-Specification:
++    http://wiki.debian.org/Proposals/CopyrightFormat?action=recall&rev=228
++Upstream-Name: sdcv
++Upstream-Maintainer: Evgeniy Dushistov <dushistov@mail.ru>
++Upstream-Source: http://sdcv.sourceforge.net
++
++Files: *
++Copyright: Copyright (C) 2003-2006 Evgeniy <dushistov@mail.ru>
++License: GPL-2+
++ On Debian systems the full text of the GNU General Public License can be found
++ in the `/usr/share/common-licenses/GPL' file.
++
++
++Files: debian/*
++Copyright: Copyright 2004, Cai Qian <caiqian@gnome.org>
++Copyright: Copyright 2008, Michal Čihař <nijel@debian.org>
++License: GPL-2+
++ On Debian systems the full text of the GNU General Public License can be found
++ in the `/usr/share/common-licenses/GPL' file.
+--- sdcv-0.4.2.orig/debian/changelog
++++ sdcv-0.4.2/debian/changelog
+@@ -0,0 +1,130 @@
++sdcv (0.4.2-8) unstable; urgency=low
++
++  * Fix FTBFS if built twice (Closes: #503031).
++  * Unfuzzy string in Slovak translation (caused by another patch and the
++    translation is not really fuzzy).
++
++ -- Michal Čihař <nijel@debian.org>  Wed, 22 Oct 2008 08:02:56 +0200
++
++sdcv (0.4.2-7) unstable; urgency=low
++
++  * Properly typecast to avoid problems with signed char.
++  * Fix format chars to avoid possible problems on 64-bit arches.
++  * Properly handle gzread return values.
++
++ -- Michal Čihař <nijel@debian.org>  Mon, 20 Oct 2008 11:22:28 +0200
++
++sdcv (0.4.2-6) unstable; urgency=low
++
++  * Fix unalligned access to internal buffer while reading dictionary index
++    (Closes: #500921).
++
++ -- Michal Čihař <nijel@debian.org>  Mon, 06 Oct 2008 14:07:45 +0200
++
++sdcv (0.4.2-5) unstable; urgency=low
++
++  * Make sdcv accept $HOME as home directory (Closes: #500921).
++
++ -- Michal Čihař <nijel@debian.org>  Fri, 03 Oct 2008 09:18:52 +0200
++
++sdcv (0.4.2-4) unstable; urgency=low
++
++  * Create fake home directory to make testing possible (Closes: #500318).
++
++ -- Michal Čihař <nijel@debian.org>  Mon, 29 Sep 2008 08:46:18 +0200
++
++sdcv (0.4.2-3) unstable; urgency=low
++
++  * New maintainer (Closes: #480557).
++  * Maintain package in collab-maint, add Vcs-* headers.
++  * Convert to debhelper 7.
++  * Use quilt to apply all patches.
++  * Acknowledge NMUs, thanks to all who helped (Closes: #470985, #474819,
++    #450040, #417687, #441754).
++  * Fix running of testsuite with dash as /bin/sh.
++  * Added Czech translation.
++  * Run explicitely update-gmo to regenerate translations.
++  * Fix typo in english translation.
++  * Fix errors in uk man page.
++  * All patches were reported upstream.
++  * Update to standards 3.8.0.
++  * Use machine-interpretable debian/copyright.
++
++ -- Michal Čihař <nijel@debian.org>  Wed, 24 Sep 2008 11:25:30 +0200
++
++sdcv (0.4.2-2.2) unstable; urgency=medium
++
++  * Non-maintainer upload.
++  * FTBFS: libwrapper.cpp:55: error: 'strchr' was not declared in this
++    scope (Closes: #474819)
++  * debian/control:
++    - Bump Standards-Version to 3.7.3.
++    - Use Homepage: field for upstream URL.
++  * Update debian/watch file to use SourceForge-specific syntax (Closes:
++    450040)
++
++ -- Chris Lamb <chris@chris-lamb.co.uk>  Sat, 12 Apr 2008 01:10:51 +0100
++
++sdcv (0.4.2-2.1) unstable; urgency=medium
++
++  * Non-maintainer upload.
++  * Fix FTBFS with GCC 4.3 (Closes: #417687).
++  * Update Slovak translation (Closes: #441754).
++
++ -- Luk Claes <luk@debian.org>  Fri, 14 Mar 2008 22:22:31 +0000
++
++sdcv (0.4.2-2) unstable; urgency=low
++
++  * Apply patch for AMD64 build by Matej Vela <vela@debian.org> 
++    (Closes: #369702)
++  * Apply patch for pango markup support (Closes: #365324)
++
++ -- Cai Qian <caiqian@debian.org>  Sat, 10 June 2006 19:33:09 +0100
++
++sdcv (0.4.2-1) unstable; urgency=low
++
++  * New upstream release
++  * Modify watch file
++  * Use new policy
++
++ -- Cai Qian <caiqian@debian.org>  Wed, 31 May 2006 00:57:09 +0100
++
++sdcv (0.4-3) unstable; urgency=low
++
++  * Correct watch file format
++  * Add readline option in debian/rules
++
++ -- Cai Qian <caiqian@debian.org>  Sat, 22 Oct 2005 20:08:00 +0100
++
++sdcv (0.4-2) unstable; urgency=low
++
++  * Build with libreadline support
++  * Add watch file
++
++ -- Cai Qian <caiqian@debian.org>  Thu, 20 Oct 2005 21:10:00 +0100
++
++sdcv (0.4-1) unstable; urgency=low
++
++  * New upstream release
++  * SDCV did not provide libsdcv and libsdcv-dev any more 
++  * Corrected FSF address
++
++ -- Cai Qian <caiqian@debian.org>  Tue, 27 Sep 2005 13:03:00 +0100
++
++sdcv (0.3.4-1) unstable; urgency=low
++
++  * New upstream release.
++  * Now SDCV is using autotools build system.
++  * Split SDCV into sdcv, libsdcv3 and libsdcv-dev.
++  * Add Chinese po file.
++  * Sponsored by Brian Nelson.
++
++ -- Cai Qian <caiqian@gnome.org>  Mon, 21 Jan 2005 09:49:03 +0800
++
++sdcv (0.1-1) unstable; urgency=low
++
++  * Initial Release. (Closes: #250532)
++  * Sponsored by Brian Nelson <pyro@debian.org>
++
++ -- Cai Qian <caiqian@gnome.org>  Mon, 15 Nov 2004 23:12:29 +0800
++
+--- sdcv-0.4.2.orig/debian/rules
++++ sdcv-0.4.2/debian/rules
+@@ -0,0 +1,33 @@
++#!/usr/bin/make -f
++
++#export DH_VERBOSE=1
++
++include /usr/share/quilt/quilt.make
++
++build: build-stamp
++build-stamp: $(QUILT_STAMPFN)
++	dh build --before configure
++	dh_auto_configure -- --with-readline
++	$(MAKE) -C po update-gmo
++	dh build --after configure --before auto_test
++	mkdir -p tmphome/.stardict/dic
++	HOME=`pwd`/tmphome/; export HOME; dh_auto_test
++	dh build --after auto_test
++	touch $@
++
++clean: unpatch
++	dh clean
++	rm -f po/*.gmo
++
++install: build-stamp
++	dh install
++
++binary-arch: install
++	dh binary-arch
++
++binary-indep: 
++	# Nothing to do
++
++binary: binary-arch binary-indep
++
++.PHONY: build clean binary-indep binary-arch binary install 
+--- sdcv-0.4.2.orig/debian/README.Debian
++++ sdcv-0.4.2/debian/README.Debian
+@@ -0,0 +1,9 @@
++sdcv for Debian
++---------------
++
++This package alone does not contain any dictionary, becasue of licences
++problems. However, you can download them from
++http://stardict.sourceforge.net/Dictionaries.php. It will not depend on any of
++the stardict* packages.
++
++ -- Cai Qian <caiqian@debian.org>, Thu, 20 Oct 2005 21:12:29 +0100
+--- sdcv-0.4.2.orig/debian/sdcv.manpages
++++ sdcv-0.4.2/debian/sdcv.manpages
+@@ -0,0 +1 @@
++doc/sdcv.1
+--- sdcv-0.4.2.orig/debian/compat
++++ sdcv-0.4.2/debian/compat
+@@ -0,0 +1 @@
++7
+--- sdcv-0.4.2.orig/debian/patches/allignment.patch
++++ sdcv-0.4.2/debian/patches/allignment.patch
+@@ -0,0 +1,19 @@
++Fix unalligned access to buffer.
++--- a/src/lib/lib.cpp
+++++ b/src/lib/lib.cpp
++@@ -496,9 +496,13 @@
++ 		entries[i].keystr=p;
++ 		len=strlen(p);
++ 		p+=len+1;
++-		entries[i].off=g_ntohl(*reinterpret_cast<guint32 *>(p));
+++        /*
+++         * Can not use typecasting here, because *data does not have
+++         * to be alligned and unalligned access fails on some architectures.
+++         */
+++		entries[i].off=((unsigned char)p[0] << 24) | ((unsigned char)p[1] << 16) | ((unsigned char)p[2] << 8) | (unsigned char)p[3];
++ 		p+=sizeof(guint32);
++-		entries[i].size=g_ntohl(*reinterpret_cast<guint32 *>(p));
+++		entries[i].size=((unsigned char)p[0] << 24) | ((unsigned char)p[1] << 16) | ((unsigned char)p[2] << 8) | (unsigned char)p[3];
++ 		p+=sizeof(guint32);
++ 	}
++ }
+--- sdcv-0.4.2.orig/debian/patches/locales.patch
++++ sdcv-0.4.2/debian/patches/locales.patch
+@@ -0,0 +1,335 @@
++Fixes typo in program (choise -> choice).
++http://sourceforge.net/tracker/index.php?func=detail&aid=2125953&group_id=122858&atid=694730
++--- a/po/ru.po
+++++ b/po/ru.po
++@@ -8,7 +8,7 @@
++ msgstr ""
++ "Project-Id-Version: sdcv 0.3\n"
++ "Report-Msgid-Bugs-To: dushistov@mail.ru\n"
++-"POT-Creation-Date: 2006-04-24 15:18+0400\n"
+++"POT-Creation-Date: 2008-09-24 10:54+0200\n"
++ "PO-Revision-Date: 2006-04-24 15:20+0300\n"
++ "Last-Translator: Evgeniy Dushistov <dushistov@mail.ru>\n"
++ "Language-Team: Russian <ru@li.org>\n"
++@@ -105,35 +105,35 @@
++ msgid "There are no words/phrases to translate.\n"
++ msgstr "�� ������ �����/����� ��� ��������.\n"
++ 
++-#: src/libwrapper.cpp:245
+++#: src/libwrapper.cpp:246
++ msgid "popen failed"
++ msgstr "������� popen ����������� � �������"
++ 
++-#: src/libwrapper.cpp:282
+++#: src/libwrapper.cpp:283
++ #, c-format
++ msgid "Can not convert %s to utf8.\n"
++ msgstr "�� ���� ������������� %s � utf8.\n"
++ 
++-#: src/libwrapper.cpp:339 src/libwrapper.cpp:371
+++#: src/libwrapper.cpp:340 src/libwrapper.cpp:372
++ #, c-format
++ msgid "Found %d items, similar to %s.\n"
++ msgstr "������� %d ����, ������� �� %s.\n"
++ 
++-#: src/libwrapper.cpp:352
+++#: src/libwrapper.cpp:353
++ #, c-format
++ msgid "Your choice[-1 to abort]: "
++ msgstr "��� �����[-1 - ������]:"
++ 
++-#: src/libwrapper.cpp:366
+++#: src/libwrapper.cpp:367
++ #, c-format
++ msgid ""
++-"Invalid choise.\n"
+++"Invalid choice.\n"
++ "It must be from 0 to %d or -1.\n"
++ msgstr ""
++ "������������ �����.\n"
++ "������ ���� �� 0 �� %d ��� -1.\n"
++ 
++-#: src/libwrapper.cpp:382
+++#: src/libwrapper.cpp:383
++ #, c-format
++ msgid "Nothing similar to %s, sorry :(\n"
++ msgstr "������ �������� �� %s, �������� :(\n"
++--- a/po/sdcv.pot
+++++ b/po/sdcv.pot
++@@ -8,7 +8,7 @@
++ msgstr ""
++ "Project-Id-Version: PACKAGE VERSION\n"
++ "Report-Msgid-Bugs-To: dushistov@mail.ru\n"
++-"POT-Creation-Date: 2006-04-24 15:18+0400\n"
+++"POT-Creation-Date: 2008-09-24 10:54+0200\n"
++ "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
++ "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
++ "Language-Team: LANGUAGE <LL@li.org>\n"
++@@ -96,33 +96,33 @@
++ msgid "There are no words/phrases to translate.\n"
++ msgstr ""
++ 
++-#: src/libwrapper.cpp:245
+++#: src/libwrapper.cpp:246
++ msgid "popen failed"
++ msgstr ""
++ 
++-#: src/libwrapper.cpp:282
+++#: src/libwrapper.cpp:283
++ #, c-format
++ msgid "Can not convert %s to utf8.\n"
++ msgstr ""
++ 
++-#: src/libwrapper.cpp:339 src/libwrapper.cpp:371
+++#: src/libwrapper.cpp:340 src/libwrapper.cpp:372
++ #, c-format
++ msgid "Found %d items, similar to %s.\n"
++ msgstr ""
++ 
++-#: src/libwrapper.cpp:352
+++#: src/libwrapper.cpp:353
++ #, c-format
++ msgid "Your choice[-1 to abort]: "
++ msgstr ""
++ 
++-#: src/libwrapper.cpp:366
+++#: src/libwrapper.cpp:367
++ #, c-format
++ msgid ""
++-"Invalid choise.\n"
+++"Invalid choice.\n"
++ "It must be from 0 to %d or -1.\n"
++ msgstr ""
++ 
++-#: src/libwrapper.cpp:382
+++#: src/libwrapper.cpp:383
++ #, c-format
++ msgid "Nothing similar to %s, sorry :(\n"
++ msgstr ""
++--- a/po/sk.po
+++++ b/po/sk.po
++@@ -6,7 +6,7 @@
++ msgstr ""
++ "Project-Id-Version: sdcv 0.3.2\n"
++ "Report-Msgid-Bugs-To: dushistov@mail.ru\n"
++-"POT-Creation-Date: 2006-04-24 15:18+0400\n"
+++"POT-Creation-Date: 2008-09-24 10:54+0200\n"
++ "PO-Revision-Date: 2005-01-04 20:19+0100\n"
++ "Last-Translator: Zdenko Podobný <zdpo@mailbox.sk>\n"
++ "Language-Team: Slovak <<sk-i18n@lists.linux.sk>>\n"
++@@ -102,35 +102,35 @@
++ msgid "There are no words/phrases to translate.\n"
++ msgstr "Nie je čo preložiť.\n"
++ 
++-#: src/libwrapper.cpp:245
+++#: src/libwrapper.cpp:246
++ msgid "popen failed"
++ msgstr ""
++ 
++-#: src/libwrapper.cpp:282
+++#: src/libwrapper.cpp:283
++ #, c-format
++ msgid "Can not convert %s to utf8.\n"
++ msgstr "nie je možné konvertovať %s na utf8.\n"
++ 
++-#: src/libwrapper.cpp:339 src/libwrapper.cpp:371
+++#: src/libwrapper.cpp:340 src/libwrapper.cpp:372
++ #, c-format
++ msgid "Found %d items, similar to %s.\n"
++ msgstr "Nájdené %d položiek, podobných %s,\n"
++ 
++-#: src/libwrapper.cpp:352
+++#: src/libwrapper.cpp:353
++ #, fuzzy, c-format
++ msgid "Your choice[-1 to abort]: "
++ msgstr "Vaša voľba: "
++ 
++-#: src/libwrapper.cpp:366
+++#: src/libwrapper.cpp:367
++ #, fuzzy, c-format
++ msgid ""
++-"Invalid choise.\n"
+++"Invalid choice.\n"
++ "It must be from 0 to %d or -1.\n"
++ msgstr ""
++ "Neplatná voľba.\n"
++ "Musí byť od 0 po %d.\n"
++ 
++-#: src/libwrapper.cpp:382
+++#: src/libwrapper.cpp:383
++ #, c-format
++ msgid "Nothing similar to %s, sorry :(\n"
++ msgstr "Ľutujem, nič sa nepodobá na %s :(\n"
++--- a/po/uk.po
+++++ b/po/uk.po
++@@ -8,7 +8,7 @@
++ msgstr ""
++ "Project-Id-Version: sdcv 0.3\n"
++ "Report-Msgid-Bugs-To: dushistov@mail.ru\n"
++-"POT-Creation-Date: 2006-04-24 15:18+0400\n"
+++"POT-Creation-Date: 2008-09-24 10:54+0200\n"
++ "PO-Revision-Date: 2004-12-14 17:54+0300\n"
++ "Last-Translator:  <dubyk@lsl.lviv.ua>\n"
++ "Language-Team: Ukrainian <dubyk@lsl.lviv.ua>\n"
++@@ -105,35 +105,35 @@
++ msgid "There are no words/phrases to translate.\n"
++ msgstr "Не задано слова/фрази для перекладу.\n"
++ 
++-#: src/libwrapper.cpp:245
+++#: src/libwrapper.cpp:246
++ msgid "popen failed"
++ msgstr ""
++ 
++-#: src/libwrapper.cpp:282
+++#: src/libwrapper.cpp:283
++ #, c-format
++ msgid "Can not convert %s to utf8.\n"
++ msgstr "Не можу перетворити %s у utf8.\n"
++ 
++-#: src/libwrapper.cpp:339 src/libwrapper.cpp:371
+++#: src/libwrapper.cpp:340 src/libwrapper.cpp:372
++ #, c-format
++ msgid "Found %d items, similar to %s.\n"
++ msgstr "Знайдено %d слів, схожих на %s.\n"
++ 
++-#: src/libwrapper.cpp:352
+++#: src/libwrapper.cpp:353
++ #, fuzzy, c-format
++ msgid "Your choice[-1 to abort]: "
++ msgstr "Ваш вибір: "
++ 
++-#: src/libwrapper.cpp:366
+++#: src/libwrapper.cpp:367
++ #, fuzzy, c-format
++ msgid ""
++-"Invalid choise.\n"
+++"Invalid choice.\n"
++ "It must be from 0 to %d or -1.\n"
++ msgstr ""
++ "Неправильний вибір.\n"
++ "Повинно бути від 0 до %d.\n"
++ 
++-#: src/libwrapper.cpp:382
+++#: src/libwrapper.cpp:383
++ #, c-format
++ msgid "Nothing similar to %s, sorry :(\n"
++ msgstr "Нічого схожого на %s, даруйте :(\n"
++--- a/po/zh_CN.po
+++++ b/po/zh_CN.po
++@@ -6,7 +6,7 @@
++ msgstr ""
++ "Project-Id-Version: sdcv 0.3\n"
++ "Report-Msgid-Bugs-To: dushistov@mail.ru\n"
++-"POT-Creation-Date: 2006-04-24 15:18+0400\n"
+++"POT-Creation-Date: 2008-09-24 10:54+0200\n"
++ "PO-Revision-Date: 2005-1-17 00:58+0800\n"
++ "Last-Translator: Cai Qian <caiqian@gnome.org>\n"
++ "Language-Team: Simplified Chinese\n"
++@@ -96,35 +96,35 @@
++ msgid "There are no words/phrases to translate.\n"
++ msgstr "没有供翻译的单词或短语。\n"
++ 
++-#: src/libwrapper.cpp:245
+++#: src/libwrapper.cpp:246
++ msgid "popen failed"
++ msgstr ""
++ 
++-#: src/libwrapper.cpp:282
+++#: src/libwrapper.cpp:283
++ #, c-format
++ msgid "Can not convert %s to utf8.\n"
++ msgstr "无法将 %s 转换为 UTF-8。\n"
++ 
++-#: src/libwrapper.cpp:339 src/libwrapper.cpp:371
+++#: src/libwrapper.cpp:340 src/libwrapper.cpp:372
++ #, c-format
++ msgid "Found %d items, similar to %s.\n"
++ msgstr "发现 %d 条记录和 %s 相似。\n"
++ 
++-#: src/libwrapper.cpp:352
+++#: src/libwrapper.cpp:353
++ #, fuzzy, c-format
++ msgid "Your choice[-1 to abort]: "
++ msgstr "您的选择为："
++ 
++-#: src/libwrapper.cpp:366
+++#: src/libwrapper.cpp:367
++ #, fuzzy, c-format
++ msgid ""
++-"Invalid choise.\n"
+++"Invalid choice.\n"
++ "It must be from 0 to %d or -1.\n"
++ msgstr ""
++ "无效的选择。\n"
++ "必须是 0 到 %d。\n"
++ 
++-#: src/libwrapper.cpp:382
+++#: src/libwrapper.cpp:383
++ #, c-format
++ msgid "Nothing similar to %s, sorry :(\n"
++ msgstr "对不起，没有发现和 %s 相似的 :(\n"
++--- a/po/zh_TW.po
+++++ b/po/zh_TW.po
++@@ -7,7 +7,7 @@
++ msgstr ""
++ "Project-Id-Version: sdcv 0.4\n"
++ "Report-Msgid-Bugs-To: dushistov@mail.ru\n"
++-"POT-Creation-Date: 2006-04-24 15:18+0400\n"
+++"POT-Creation-Date: 2008-09-24 10:54+0200\n"
++ "PO-Revision-Date: 2005-10-31 17:14+0800\n"
++ "Last-Translator: Wei-Lun Chao <chaoweilun@pcmail.com.tw>\n"
++ "Language-Team: Chinese (traditional) <zh-l10n@linux.org.tw>\n"
++@@ -98,35 +98,35 @@
++ msgid "There are no words/phrases to translate.\n"
++ msgstr "沒有可供翻譯的單字或片語。\n"
++ 
++-#: src/libwrapper.cpp:245
+++#: src/libwrapper.cpp:246
++ msgid "popen failed"
++ msgstr ""
++ 
++-#: src/libwrapper.cpp:282
+++#: src/libwrapper.cpp:283
++ #, c-format
++ msgid "Can not convert %s to utf8.\n"
++ msgstr "無法將 %s 轉換為 UTF-8。\n"
++ 
++-#: src/libwrapper.cpp:339 src/libwrapper.cpp:371
+++#: src/libwrapper.cpp:340 src/libwrapper.cpp:372
++ #, c-format
++ msgid "Found %d items, similar to %s.\n"
++ msgstr "找到 %d 項紀錄和 %s 相似。\n"
++ 
++-#: src/libwrapper.cpp:352
+++#: src/libwrapper.cpp:353
++ #, fuzzy, c-format
++ msgid "Your choice[-1 to abort]: "
++ msgstr "您的選擇為："
++ 
++-#: src/libwrapper.cpp:366
+++#: src/libwrapper.cpp:367
++ #, fuzzy, c-format
++ msgid ""
++-"Invalid choise.\n"
+++"Invalid choice.\n"
++ "It must be from 0 to %d or -1.\n"
++ msgstr ""
++ "無效的選擇。\n"
++ "必須是從 0 到 %d。\n"
++ 
++-#: src/libwrapper.cpp:382
+++#: src/libwrapper.cpp:383
++ #, c-format
++ msgid "Nothing similar to %s, sorry :(\n"
++ msgstr "抱歉，沒有和 %s 相似者 :(\n"
++--- a/src/libwrapper.cpp
+++++ b/src/libwrapper.cpp
++@@ -364,7 +364,7 @@
++ 				} else if (choise==-1)
++ 					break;
++ 				else
++-					printf(_("Invalid choise.\nIt must be from 0 to %d or -1.\n"), 
+++					printf(_("Invalid choice.\nIt must be from 0 to %d or -1.\n"), 
++ 					       res_list.size()-1);	  
++ 			}		
++ 		} else {
+--- sdcv-0.4.2.orig/debian/patches/use-env-home.patch
++++ sdcv-0.4.2/debian/patches/use-env-home.patch
+@@ -0,0 +1,29 @@
++Index: sdcv-0.4.2/src/sdcv.cpp
++===================================================================
++--- sdcv-0.4.2.orig/src/sdcv.cpp	2008-10-03 09:15:26.000000000 +0200
+++++ sdcv-0.4.2/src/sdcv.cpp	2008-10-03 09:16:25.000000000 +0200
++@@ -157,11 +157,14 @@
++ 			data_dir="/usr/share/stardict/dic";
++ 	}
++ 
+++	const char *homedir = g_getenv ("HOME");
+++	if (!homedir)
+++		homedir = g_get_home_dir ();
++ 
++ 
++ 	strlist_t dicts_dir_list;
++ 
++-	dicts_dir_list.push_back(std::string(g_get_home_dir())+G_DIR_SEPARATOR+
+++	dicts_dir_list.push_back(std::string(homedir)+G_DIR_SEPARATOR+
++ 				 ".stardict"+G_DIR_SEPARATOR+"dic");
++ 	dicts_dir_list.push_back(data_dir);   
++ 
++@@ -186,7 +189,7 @@
++ 	}
++ 
++     
++-	string conf_dir = string(g_get_home_dir())+G_DIR_SEPARATOR+".stardict";
+++	string conf_dir = string(homedir)+G_DIR_SEPARATOR+".stardict";
++ 	if (g_mkdir(conf_dir.c_str(), S_IRWXU)==-1 && errno!=EEXIST)
++ 		fprintf(stderr, _("g_mkdir failed: %s\n"), strerror(errno));
++ 
+--- sdcv-0.4.2.orig/debian/patches/fix-formats.patch
++++ sdcv-0.4.2/debian/patches/fix-formats.patch
+@@ -0,0 +1,34 @@
++Printing of size_t type should use %zd.
++--- a/src/libwrapper.cpp
+++++ b/src/libwrapper.cpp
++@@ -337,13 +337,13 @@
++ 		}//if (!force)
++ 
++ 		if (!show_all_results && !force) {
++-			printf(_("Found %d items, similar to %s.\n"), res_list.size(), 
+++			printf(_("Found %zd items, similar to %s.\n"), res_list.size(), 
++ 			       utf8_output ? str : utf8_to_locale_ign_err(str).c_str());
++ 			for (size_t i=0; i<res_list.size(); ++i) {
++ 				string loc_bookname, loc_def;
++ 				loc_bookname=utf8_to_locale_ign_err(res_list[i].bookname);
++ 				loc_def=utf8_to_locale_ign_err(res_list[i].def);
++-				printf("%d)%s-->%s\n", i,
+++				printf("%zd)%s-->%s\n", i,
++ 				       utf8_output ?  res_list[i].bookname.c_str() : loc_bookname.c_str(),
++ 				       utf8_output ? res_list[i].def.c_str() : loc_def.c_str());
++ 			}
++@@ -364,12 +364,12 @@
++ 				} else if (choise==-1)
++ 					break;
++ 				else
++-					printf(_("Invalid choice.\nIt must be from 0 to %d or -1.\n"), 
+++					printf(_("Invalid choice.\nIt must be from 0 to %zd or -1.\n"), 
++ 					       res_list.size()-1);	  
++ 			}		
++ 		} else {
++ 			sdcv_pager pager(force);
++-			fprintf(pager.get_stream(), _("Found %d items, similar to %s.\n"), 
+++			fprintf(pager.get_stream(), _("Found %zd items, similar to %s.\n"), 
++ 				res_list.size(), utf8_output ? str : utf8_to_locale_ign_err(str).c_str());
++ 			for (PSearchResult ptr=res_list.begin(); ptr!=res_list.end(); ++ptr)
++ 				print_search_result(pager.get_stream(), *ptr);
+--- sdcv-0.4.2.orig/debian/patches/manpage.patch
++++ sdcv-0.4.2/debian/patches/manpage.patch
+@@ -0,0 +1,122 @@
++Fix man page to be correct.
++http://sourceforge.net/tracker/index.php?func=detail&aid=2125983&group_id=122858&atid=694730
++--- a/doc/uk/sdcv.1
+++++ b/doc/uk/sdcv.1
++@@ -1,14 +1,14 @@
++-..TH SDCV 1 "2004-12-06" "sdcv-0.4"
++-..SH NAME
+++.TH SDCV 1 "2004-12-06" "sdcv-0.4"
+++.SH NAME
++ sdcv \- консольна версія Зоряного словника [Stardict]
++-..SH SYNOPSIS
++-..B sdcv 
+++.SH SYNOPSIS
+++.B sdcv 
++ [ 
++-..BI options 
+++.BI options 
++ ] 
++ [list of words]
++-..SH DESCRIPTION
++-..I sdcv 
+++.SH DESCRIPTION
+++.I sdcv 
++ sdcv проста, міжплатформена текстова утиліта для роботи із 
++ словниками у форматі Зоряного словника [StarDict].
++ Слово зі "списку слів", може бути рядком з початковим слешем '/' 
++@@ -19,37 +19,37 @@
++ У діалоговому режимі, якщо sdcv був скомпільований з підтримкою 
++ бібліотеки readline, Ви можете використовувати клавіші ДОГОРИ 
++ та ВНИЗ для роботи з хронологією.
++-..SH OPTIONS
++-..TP 8
++-..B "\-h  \-\-help"
+++.SH OPTIONS
+++.TP 8
+++.B "\-h  \-\-help"
++ відображає повідомлення довідки та виходить
++-..TP 8
++-..B "\-v \-\-verbose"
+++.TP 8
+++.B "\-v \-\-verbose"
++ відображає версію та виходить
++-..TP 8
++-..B "\-l \-\-list\-dicts" 
+++.TP 8
+++.B "\-l \-\-list\-dicts" 
++ відображає список доступних словників та виходить
++-..TP 8
++-..B "\-u \-\-use\-dict filename"
+++.TP 8
+++.B "\-u \-\-use\-dict filename"
++ для пошуку з використанням лише словника з цим іменем(bookname)
++-..TP 8
++-..B "\-n \-\-non\-interactive"
+++.TP 8
+++.B "\-n \-\-non\-interactive"
++ для використання в скриптах
++-..TP 8
++-..B "\-\-utf8\-output"
+++.TP 8
+++.B "\-\-utf8\-output"
++ Заставити sdcv розмовляти не в системному кодуванні locale, а робити вивід в utf8
++-..TP 8
++-..B "\-\-utf8\-input"
+++.TP 8
+++.B "\-\-utf8\-input"
++ Заставити sdcv слухати не в системному кодуванні locale, а припускати що це 
++ ввід в utf8
++-..TP 8
++-..B "\-\-data\-dir path/to/directory" 
+++.TP 8
+++.B "\-\-data\-dir path/to/directory" 
++ Використовуйте цю теку як шлях до теки даних зоряного словника [stardict]. 
++ Це значає, що sdcv шукає словники у теці data-dir/dic.
++-..SH FILES
++-..TP 
+++.SH FILES
+++.TP 
++ /usr/share/stardict/dic 
++-..TP
+++.TP
++ $(HOME)/.stardict/dic
++ 
++ Місце, де sdcv очікує знайти словники.
++@@ -57,28 +57,28 @@
++ що Ви хочете, лише встановіть змінну оточення STARDICT_DATA_DIR.
++ Наприклад, якщо Ви маєте словники у теці /mnt/data/stardict-dicts/dic, 
++ встановіть STARDICT_DATA_DIR у /mnt/data/stardict-dicts.
++-..TP
+++.TP
++ $(HOME)/.sdcv_history
++ 
++ Цей файл містить останні $(SDCV_HISTSIZE) слова, які Ви шукали з sdcv.
++ SDCV використовує цей файл при умові, якщо sdcv був скомпільований 
++ з підтримкою бібліотеки readline.
++ 
++-..SH ENVIROMENT 
+++.SH ENVIROMENT 
++ Змінні оточення для \fIsdcv\fR:
++-..TP 20
++-..B STARDICT_DATA_DIR
+++.TP 20
+++.B STARDICT_DATA_DIR
++ Якщо встановлена, sdcv використає цю змінну як теку даних, це означає, 
++ що sdcv шукатиме словники у $\fBSTARDICT_DATA_DIR\fR\dic
++-..TP 20
++-..B SDCV_HISTSIZE
+++.TP 20
+++.B SDCV_HISTSIZE
++ Якщо встановлена, sdcv писатиме у $(HOME)/.sdcv_history лише 
++ останні $(SDCV_HISTSIZE) слова, які Ви шукали з sdcv. Якщо не встановлена, 
++ то збірігатиметься останніх 2000 слів у $(HOME)/.sdcv_history.
++-..SH BUGS
+++.SH BUGS
++ Звіти про помилки висилайте на адресу dushistov на mail крапка ru. 
++ Не забувайте включати слово "sdcv" десь у полі "Тема:".
++-..SH AUTHORS
+++.SH AUTHORS
++ Эвгений А. Душистов, Hu Zheng
++-..SH SEE ALSO
+++.SH SEE ALSO
++ stardict(1), http://sdcv.sourceforge.net/, http://stardict.sourceforge.net 
+--- sdcv-0.4.2.orig/debian/patches/sk.po.patch
++++ sdcv-0.4.2/debian/patches/sk.po.patch
+@@ -0,0 +1,133 @@
++Updates Slovak translation.
++http://sourceforge.net/tracker/index.php?func=detail&aid=2125956&group_id=122858&atid=694730
++--- a/po/sk.po
+++++ b/po/sk.po
++@@ -1,21 +1,21 @@
++ # translation of sdcv.po to Slovak
++ # Copyright (C)
++ # Zdenko Podobný <zdpo@mailbox.sk>, 2004, 2005.
++-#
+++# Ivan Masár <helix84@centrum.sk>, 2007.
+++
++ msgid ""
++ msgstr ""
++ "Project-Id-Version: sdcv 0.3.2\n"
++ "Report-Msgid-Bugs-To: dushistov@mail.ru\n"
++ "POT-Creation-Date: 2008-09-24 10:54+0200\n"
++-"PO-Revision-Date: 2005-01-04 20:19+0100\n"
++-"Last-Translator: Zdenko Podobný <zdpo@mailbox.sk>\n"
++-"Language-Team: Slovak <<sk-i18n@lists.linux.sk>>\n"
+++"PO-Revision-Date: 2007-09-11 00:22+0100\n"
+++"Last-Translator: Ivan Masár <helix84@centrum.sk>\n"
+++"Language-Team: Slovak <sk-i18n@lists.linux.sk>\n"
++ "MIME-Version: 1.0\n"
++ "Content-Type: text/plain; charset=UTF-8\n"
++ "Content-Transfer-Encoding: 8bit\n"
++ "X-Generator: KBabel 1.9.1\n"
++-"Plural-Forms:  nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
++-"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+++"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
++ 
++ #: src/sdcv.cpp:127
++ #, c-format
++@@ -24,7 +24,7 @@
++ "Try '%s --help' for more information.\n"
++ msgstr ""
++ "Neznáma voľba.\n"
++-"Skúste `%s --help'.\n"
+++"Skúste „%s --help“.\n"
++ 
++ #: src/sdcv.cpp:134
++ #, c-format
++@@ -43,15 +43,12 @@
++ 
++ #: src/sdcv.cpp:137
++ #, c-format
++-msgid ""
++-"-l, --list-dicts         display list of available dictionaries and exit\n"
++-msgstr ""
++-"-l, --list-dicts         zobrazí zoznam dostupných slovníkov a skončí\n"
+++msgid "-l, --list-dicts         display list of available dictionaries and exit\n"
+++msgstr "-l, --list-dicts         zobrazí zoznam dostupných slovníkov a skončí\n"
++ 
++ #: src/sdcv.cpp:138
++ #, c-format
++-msgid ""
++-"-u, --use-dict bookname  for search use only dictionary with this bookname\n"
+++msgid "-u, --use-dict bookname  for search use only dictionary with this bookname\n"
++ msgstr "-u, --use-dict názov     použiť pre hľadanie iba zvolený slovník\n"
++ 
++ #: src/sdcv.cpp:139
++@@ -71,12 +68,8 @@
++ 
++ #: src/sdcv.cpp:142
++ #, c-format
++-msgid ""
++-"--data-dir path/to/dir   use this directory as path to stardict data "
++-"directory\n"
++-msgstr ""
++-"--data-dir path/to/dir   použiť tento priečinok ako cestu pre stardict "
++-"dátový priečinok\n"
+++msgid "--data-dir path/to/dir   use this directory as path to stardict data directory\n"
+++msgstr "--data-dir path/to/dir   použiť tento priečinok ako cestu pre stardict dátový priečinok\n"
++ 
++ #: src/sdcv.cpp:148
++ #, c-format
++@@ -84,14 +77,14 @@
++ msgstr "Konzolová verzia StarDict, verzia %s\n"
++ 
++ #: src/sdcv.cpp:169
++-#, fuzzy, c-format
+++#, c-format
++ msgid "Dictionary's name   Word count\n"
++-msgstr "názov     počet slov\n"
+++msgstr "názov slovníka      počet slov\n"
++ 
++ #: src/sdcv.cpp:191
++ #, c-format
++ msgid "g_mkdir failed: %s\n"
++-msgstr ""
+++msgstr "g_mkdir zlyhalo: %s\n"
++ 
++ #: src/sdcv.cpp:207
++ msgid "Enter word or phrase: "
++@@ -104,7 +97,7 @@
++ 
++ #: src/libwrapper.cpp:246
++ msgid "popen failed"
++-msgstr ""
+++msgstr "popen zlyhalo"
++ 
++ #: src/libwrapper.cpp:283
++ #, c-format
++@@ -117,18 +110,18 @@
++ msgstr "Nájdené %d položiek, podobných %s,\n"
++ 
++ #: src/libwrapper.cpp:353
++-#, fuzzy, c-format
+++#, c-format
++ msgid "Your choice[-1 to abort]: "
++-msgstr "Vaša voľba: "
+++msgstr "Vaša voľba[-1 zruší]: "
++ 
++ #: src/libwrapper.cpp:367
++-#, fuzzy, c-format
+++#, c-format
++ msgid ""
++ "Invalid choice.\n"
++ "It must be from 0 to %d or -1.\n"
++ msgstr ""
++ "Neplatná voľba.\n"
++-"Musí byť od 0 po %d.\n"
+++"Musí byť od 0 do %d alebo -1.\n"
++ 
++ #: src/libwrapper.cpp:383
++ #, c-format
++@@ -137,6 +130,6 @@
++ 
++ #~ msgid "Can not convert %s to current locale.\n"
++ #~ msgstr "Nie je možné konvertovať %s na aktuálne locale.\n"
++-
++ #~ msgid "There is no dictionary with this bookname: %s.\n"
++ #~ msgstr "Neexistuje slovník s takýmto názvom: %s.\n"
+++
+--- sdcv-0.4.2.orig/debian/patches/cs.po.patch
++++ sdcv-0.4.2/debian/patches/cs.po.patch
+@@ -0,0 +1,144 @@
++Add Czech translation.
++http://sourceforge.net/tracker/index.php?func=detail&aid=2125958&group_id=122858&atid=694730
++--- a/po/LINGUAS
+++++ b/po/LINGUAS
++@@ -1,2 +1,2 @@
++ # Set of available languages.
++-sk zh_CN ru uk zh_TW
+++cs sk zh_CN ru uk zh_TW
++--- /dev/null
+++++ b/po/cs.po
++@@ -0,0 +1,133 @@
+++# Czech translations for sdcv package.
+++# Copyright (C) 2008 Free Software Foundation, Inc.
+++# This file is distributed under the same license as the sdcv package.
+++# Michal Čihař <michal@cihar.com>, 2008.
+++msgid ""
+++msgstr ""
+++"Project-Id-Version: sdcv 0.4.2\n"
+++"Report-Msgid-Bugs-To: dushistov@mail.ru\n"
+++"POT-Creation-Date: 2008-09-24 10:54+0200\n"
+++"PO-Revision-Date: 2008-09-24 10:42+0200\n"
+++"Last-Translator: Michal Čihař <michal@cihar.com>\n"
+++"Language-Team: Czech <cs@li.org>\n"
+++"MIME-Version: 1.0\n"
+++"Content-Type: text/plain; charset=UTF-8\n"
+++"Content-Transfer-Encoding: 8bit\n"
+++"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+++
+++#: src/sdcv.cpp:127
+++#, c-format
+++msgid ""
+++"Unknown option.\n"
+++"Try '%s --help' for more information.\n"
+++msgstr ""
+++"Neznámý parametr.\n"
+++"Zkuste '%s --help' pro nápovědu.\n"
+++
+++#: src/sdcv.cpp:134
+++#, c-format
+++msgid "Usage: %s [OPTIONS] words\n"
+++msgstr "Použití: %s [PARAMETRY] slova\n"
+++
+++#: src/sdcv.cpp:135
+++#, c-format
+++msgid "-h, --help               display this help and exit\n"
+++msgstr "-h, --help               zobrazí tuto nápovědu a skončí\n"
+++
+++#: src/sdcv.cpp:136
+++#, c-format
+++msgid "-v, --version            display version information and exit\n"
+++msgstr "-v, --version            zobrazí informace o verzi a skončí\n"
+++
+++#: src/sdcv.cpp:137
+++#, c-format
+++msgid ""
+++"-l, --list-dicts         display list of available dictionaries and exit\n"
+++msgstr "-l, --list-dicts         zobrazí seznam dostupných slovníků a skončí\n"
+++
+++#: src/sdcv.cpp:138
+++#, c-format
+++msgid ""
+++"-u, --use-dict bookname  for search use only dictionary with this bookname\n"
+++msgstr "-u, --use-dict jméno     vyhledávat jen v zadaném slovníku\n"
+++
+++#: src/sdcv.cpp:139
+++#, c-format
+++msgid "-n, --non-interactive    for use in scripts\n"
+++msgstr "-n, --non-interactive    pro použití ve skriptech\n"
+++
+++#: src/sdcv.cpp:140
+++#, c-format
+++msgid "--utf8-output            output must be in utf8\n"
+++msgstr "--utf8-output            výstup musí být v utf8\n"
+++
+++#: src/sdcv.cpp:141
+++#, c-format
+++msgid "--utf8-input             input of sdcv in utf8\n"
+++msgstr "--utf8-input             vstup musí být v utf8\n"
+++
+++#: src/sdcv.cpp:142
+++#, c-format
+++msgid ""
+++"--data-dir path/to/dir   use this directory as path to stardict data "
+++"directory\n"
+++msgstr ""
+++"--data-dir cesta/někam   použít tento adresář jako cestu ke slovníkům "
+++"stardict\n"
+++
+++#: src/sdcv.cpp:148
+++#, c-format
+++msgid "Console version of Stardict, version %s\n"
+++msgstr "Konzolová verze Stardictu, verze %s\n"
+++
+++#: src/sdcv.cpp:169
+++#, c-format
+++msgid "Dictionary's name   Word count\n"
+++msgstr "Jméno slovníku      Počet slov\n"
+++
+++#: src/sdcv.cpp:191
+++#, c-format
+++msgid "g_mkdir failed: %s\n"
+++msgstr "g_mkdir selhalo: %s\n"
+++
+++#: src/sdcv.cpp:207
+++msgid "Enter word or phrase: "
+++msgstr "Zadejte slovo nebo frázi: "
+++
+++#: src/sdcv.cpp:215
+++#, c-format
+++msgid "There are no words/phrases to translate.\n"
+++msgstr "Nebyla zadáno nic k přeložení.\n"
+++
+++#: src/libwrapper.cpp:246
+++msgid "popen failed"
+++msgstr "popen selhalo"
+++
+++#: src/libwrapper.cpp:283
+++#, c-format
+++msgid "Can not convert %s to utf8.\n"
+++msgstr "Nepodařilo se převést %s do utf8.\n"
+++
+++#: src/libwrapper.cpp:340 src/libwrapper.cpp:372
+++#, c-format
+++msgid "Found %d items, similar to %s.\n"
+++msgstr "Nalezeno %d záznamů podobných %s.\n"
+++
+++#: src/libwrapper.cpp:353
+++#, c-format
+++msgid "Your choice[-1 to abort]: "
+++msgstr "Vaše volba [-1 pro ukončení]: "
+++
+++#: src/libwrapper.cpp:367
+++#, c-format
+++msgid ""
+++"Invalid choice.\n"
+++"It must be from 0 to %d or -1.\n"
+++msgstr ""
+++"Chybná volba.\n"
+++"Musí být mezi 0 a %d nebo -1.\n"
+++
+++#: src/libwrapper.cpp:383
+++#, c-format
+++msgid "Nothing similar to %s, sorry :(\n"
+++msgstr "Nic podobného %s nenalezeno, promiň :(\n"
+--- sdcv-0.4.2.orig/debian/patches/format.patch
++++ sdcv-0.4.2/debian/patches/format.patch
+@@ -0,0 +1,20 @@
++Fixes displaying of 'g' (gtk markup) entries.
++http://sourceforge.net/tracker/index.php?func=detail&aid=2125962&group_id=122858&atid=694730
++--- a/src/libwrapper.cpp
+++++ b/src/libwrapper.cpp
++@@ -118,7 +118,6 @@
++ 		switch (*p++) {
++ 		case 'm':
++ 		case 'l': //need more work...
++-		case 'g':
++ 			sec_size = strlen(p);
++ 			if (sec_size) {
++ 				res+="\n";
++@@ -128,6 +127,7 @@
++ 			}
++ 			sec_size++;
++ 			break;
+++		case 'g':
++ 		case 'x':
++ 			sec_size = strlen(p);
++ 			if (sec_size) {
+--- sdcv-0.4.2.orig/debian/patches/fix-tests.patch
++++ sdcv-0.4.2/debian/patches/fix-tests.patch
+@@ -0,0 +1,52 @@
++Fixes tests so that they can be executed using dash as /bin/sh.
++http://sourceforge.net/tracker/index.php?func=detail&aid=2125959&group_id=122858&atid=694730
++--- a/tests/t_datadir
+++++ b/tests/t_datadir
++@@ -2,11 +2,11 @@
++ 
++ unset SDCV_PAGER
++ have=`../src/sdcv --data-dir ./ -l | wc -l`
++-let have=have-1
+++have=$(($have-1))
++ ndicts=`find "${HOME}"/.stardict/dic -name "*.ifo" -print | wc -l`
++-let ndicts=ndicts+1
+++ndicts=$(($ndicts+1))
++ if [ $have -ne $ndicts ]; then
++-	let ndicts=ndicts-1
+++	ndicts=$(($ndicts-1))
++ 	echo "test failed: sdcv says: we have: $have, but really we have: $ndicts" >&2
++ 	exit 1
++ fi
++--- a/tests/t_list
+++++ b/tests/t_list
++@@ -1,10 +1,10 @@
++ #!/bin/sh
++ 
++ ndicts=`../src/sdcv -l | wc -l`
++-let ndicts=ndicts-1
+++ndicts=$(($ndicts-1))
++ ncom=`find /usr/share/stardict/dic -name "*.ifo" | wc -l`
++ nspe=`find "${HOME}"/.stardict/dic -name "*.ifo" | wc -l`
++-let nmy=ncom+nspe
+++nmy=$(($ncom+$nspe))
++ 
++ if [ $nmy -ne $ndicts ]; then
++ 	echo "should be: $nmy, we have: $ndicts" >&2
++--- a/tests/t_utf8input
+++++ b/tests/t_utf8input
++@@ -9,13 +9,13 @@
++ "
++ j=0
++ for i in `../src/sdcv --utf8-input -n человек 2>&1`; do
++-	let j=j+1
+++	j=$(($j+1))
++ 	if [ $j -ne 1 ]; then
++ 		break;
++ 	fi
++ done
++ 
++-if [ $j -eq 1 ]; then
+++if [ $j -ne 1 ]; then
++ 	echo "empty results of search: test failed" >&2
++ 	exit 1
++ fi
+--- sdcv-0.4.2.orig/debian/patches/c++.patch
++++ sdcv-0.4.2/debian/patches/c++.patch
+@@ -0,0 +1,43 @@
++Fixes compilation with recent GCC which is more strict about C++.
++http://sourceforge.net/tracker/index.php?func=detail&aid=2125955&group_id=122858&atid=694730
++--- a/src/readline.cpp
+++++ b/src/readline.cpp
++@@ -23,6 +23,7 @@
++ #endif
++ 
++ #include <cstdio>
+++#include <cstdlib>
++ #ifdef WITH_READLINE
++ #  include <readline/readline.h>
++ #  include <readline/history.h>
++--- a/src/libwrapper.cpp
+++++ b/src/libwrapper.cpp
++@@ -24,6 +24,7 @@
++ 
++ #include <glib/gi18n.h>
++ #include <map>
+++#include <cstring>
++ 
++ #include "utils.hpp"
++ 
++--- a/src/utils.cpp
+++++ b/src/utils.cpp
++@@ -22,6 +22,7 @@
++ #  include "config.h"
++ #endif
++ 
+++#include <cstdlib>
++ #include <glib.h>
++ #include <glib/gi18n.h>
++ 
++--- a/src/lib/lib.cpp
+++++ b/src/lib/lib.cpp
++@@ -513,7 +513,7 @@
++ {
++ 	fseek(idxfile, wordoffset[page_idx], SEEK_SET);
++ 	guint32 page_size=wordoffset[page_idx+1]-wordoffset[page_idx];
++-	fread(wordentry_buf, std::min(sizeof(wordentry_buf), page_size), 1, idxfile); //TODO: check returned values, deal with word entry that strlen>255.
+++	fread(wordentry_buf, std::min(sizeof(wordentry_buf), (size_t)page_size), 1, idxfile); //TODO: check returned values, deal with word entry that strlen>255.
++ 	return wordentry_buf;
++ }
++ 
+--- sdcv-0.4.2.orig/debian/patches/zlib-return-value.patch
++++ sdcv-0.4.2/debian/patches/zlib-return-value.patch
+@@ -0,0 +1,18 @@
++Zlib can return negative value, but gulong is unsigned, so it can not catch the error state.
++--- a/src/lib/lib.cpp
+++++ b/src/lib/lib.cpp
++@@ -751,12 +751,12 @@
++ 		
++ 	idxdatabuf = (gchar *)g_malloc(fsize);
++ 		
++-	gulong len = gzread(in, idxdatabuf, fsize);
+++	ssize_t len = gzread(in, idxdatabuf, fsize);
++ 	gzclose(in);
++ 	if (len < 0)
++ 		return false;
++ 
++-	if (len != fsize)
+++	if (len != (ssize_t)fsize)
++ 		return false;
++ 
++   wordlist.resize(wc+1);
+--- sdcv-0.4.2.orig/debian/patches/series
++++ sdcv-0.4.2/debian/patches/series
+@@ -0,0 +1,11 @@
++manpage.patch
++c++.patch
++format.patch
++locales.patch
++sk.po.patch
++cs.po.patch
++fix-tests.patch
++use-env-home.patch
++allignment.patch
++fix-formats.patch
++zlib-return-value.patch

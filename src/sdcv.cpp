@@ -1,0 +1,235 @@
+/* 
+ * This file part of sdcv - console version of Stardict program
+ * http://sdcv.sourceforge.net
+ * Copyright (C) 2003-2006 Evgeniy <dushistov@mail.ru>
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Library General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+ */
+
+#ifdef HAVE_CONFIG_H
+#  include "config.h"
+#endif
+
+#include <cerrno>
+#include <cstring>
+#include <cstdlib>
+#include <cstdio>
+#include <clocale>
+#include <glib.h>
+#include <glib/gi18n.h>
+#include <glib/gstdio.h>
+#include <getopt.h>
+#include <string>
+#include <vector>
+#include <memory>
+
+#include "libwrapper.hpp"
+#include "readline.hpp"
+#include "utils.hpp"
+
+const char gVersion[] = VERSION;
+
+char *final_buf = NULL;
+
+int dict_num = 0;
+char dict_name[20][256];
+
+struct PrintDictInfo {
+	void operator()(const std::string& filename, bool) {
+		DictInfo dict_info;
+		if (dict_info.load_from_ifo_file(filename, false)) {
+			string bookname=utf8_to_locale_ign_err(dict_info.bookname);
+			printf("%s    %d\n", bookname.c_str(), dict_info.wordcount);
+		}
+	}
+};
+
+struct CountDictInfo {
+	void operator()(const std::string& filename, bool) {
+		DictInfo dict_info;
+		if (dict_info.load_from_ifo_file(filename, false)) 
+		{			
+			string bookname=utf8_to_locale_ign_err(dict_info.bookname);
+			memset(dict_name[dict_num],0,256);
+			strcpy(dict_name[dict_num],bookname.c_str());
+			dict_num++;
+			//printf("%s    %d\n", bookname.c_str(), dict_info.wordcount);
+		}
+	}
+};
+
+struct CreateDisableList {
+	CreateDisableList(const strlist_t& enable_list_, strlist_t& disable_list_) :
+		enable_list(enable_list_), disable_list(disable_list_)
+	{}
+	void operator()(const std::string& filename, bool) {
+		DictInfo dict_info;
+		if (dict_info.load_from_ifo_file(filename, false) &&
+		    std::find(enable_list.begin(), enable_list.end(), 
+			      dict_info.bookname)==enable_list.end())
+			disable_list.push_back(dict_info.ifo_file_name);		
+	}
+private:
+	const strlist_t& enable_list;
+	strlist_t& disable_list;
+};
+
+//#define SHOW_DICT
+
+
+int get_dict_num(void)
+{
+	int i;
+	string data_dir="/stardict";
+	const char *homedir = g_getenv ("HOME");
+	if (!homedir)
+		homedir = g_get_home_dir ();
+	
+	CountDictInfo count_dict_info;
+	strlist_t order_list, disable_list;	
+	strlist_t dicts_dir_list;
+
+	dicts_dir_list.push_back(std::string(homedir)+G_DIR_SEPARATOR+
+				 ".stardict"+G_DIR_SEPARATOR+"dic");
+	dicts_dir_list.push_back(data_dir);
+
+	dict_num = 0;
+	memset(dict_name,0,20*256);
+	for_each_file(dicts_dir_list, ".ifo",  order_list, disable_list, count_dict_info);
+	printf("We have %d dicts\n",dict_num);
+	for(i=0;i<dict_num;i++)
+		printf("%d:%s\n",i+1,dict_name[i]);
+		
+	return dict_num;
+}
+
+void get_dict_name(char *name,int num)
+{
+	if( strlen(dict_name[num-1]) )
+		strcpy(name,dict_name[num-1]);
+	
+}
+
+#ifdef SHOW_DICT
+	int main(int argc, char *argv[])
+#else
+	int sdcv(char *dict_name,char *words,char *result_buf)
+#endif
+{
+	//char words[10] = "hi" ;
+	//printf("%s: words is %s\n",__func__,words);
+	
+	setlocale(LC_ALL, "");
+	
+#if ENABLE_NLS
+	bindtextdomain (PACKAGE, LOCALEDIR);
+	textdomain (PACKAGE);
+#endif	 
+
+	bool h = false, v = false, show_list_dicts=false, 
+		use_book_name=false, non_interactive=true, 
+		utf8_output=true, utf8_input=false;
+	strlist_t enable_list;
+	
+	string data_dir="/stardict";
+	
+	const char *homedir = g_getenv ("HOME");
+	if (!homedir)
+		homedir = g_get_home_dir ();
+
+
+	strlist_t dicts_dir_list;
+
+	dicts_dir_list.push_back(std::string(homedir)+G_DIR_SEPARATOR+
+				 ".stardict"+G_DIR_SEPARATOR+"dic");
+	dicts_dir_list.push_back(data_dir);   
+
+#ifdef SHOW_DICT
+	if (1) 
+	{
+		int i;
+ 		//printf(_("Dictionary's name   Word count\n"));
+		
+		#if 0
+			PrintDictInfo print_dict_info;
+			strlist_t order_list, disable_list;					
+			for_each_file(dicts_dir_list, ".ifo",  order_list, disable_list, print_dict_info); 
+		#else
+			get_dict_num();
+						
+		#endif
+    
+		return 1;
+	}
+#else
+
+	strlist_t disable_list;
+	//DictInfoList  dict_info_list;
+
+	if( dict_name != NULL && strlen(dict_name) )
+	{
+		enable_list.push_back(locale_to_utf8(dict_name));
+		use_book_name=true;
+	}
+  
+	if (use_book_name) {
+		strlist_t empty_list;
+		CreateDisableList create_disable_list(enable_list, disable_list);
+		for_each_file(dicts_dir_list, ".ifo", empty_list, 
+			      empty_list, create_disable_list);
+	}
+
+    
+	string conf_dir = string(homedir)+G_DIR_SEPARATOR+".stardict";
+	if (g_mkdir(conf_dir.c_str(), S_IRWXU)==-1 && errno!=EEXIST)
+		fprintf(stderr, _("g_mkdir failed: %s\n"), strerror(errno));
+
+  
+	Library lib(utf8_input, utf8_output);
+	strlist_t empty_list;
+	lib.load(dicts_dir_list, empty_list, disable_list);
+
+
+	std::auto_ptr<read_line> io(create_readline_object());
+	
+	
+		
+		#if 1
+				if (!lib.process_phrase(words, *io, non_interactive))
+					return EXIT_FAILURE;		
+		#else
+			for(int i=optind; i<argc; ++i)
+			{
+				if (!lib.process_phrase(argv[i], *io, non_interactive))
+					return EXIT_FAILURE;
+			}
+		#endif
+
+		
+		
+		
+		if(final_buf != NULL)
+		{
+			memcpy(	result_buf , final_buf , strlen(final_buf));
+			g_free(final_buf);
+			final_buf = NULL;
+		}	
+		
+	return EXIT_SUCCESS;
+
+#endif  // SHOW_DICT
+	
+}
+

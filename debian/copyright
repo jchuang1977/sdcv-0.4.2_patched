@@ -1,0 +1,19 @@
+Format-Specification:
+    http://wiki.debian.org/Proposals/CopyrightFormat?action=recall&rev=228
+Upstream-Name: sdcv
+Upstream-Maintainer: Evgeniy Dushistov <dushistov@mail.ru>
+Upstream-Source: http://sdcv.sourceforge.net
+
+Files: *
+Copyright: Copyright (C) 2003-2006 Evgeniy <dushistov@mail.ru>
+License: GPL-2+
+ On Debian systems the full text of the GNU General Public License can be found
+ in the `/usr/share/common-licenses/GPL' file.
+
+
+Files: debian/*
+Copyright: Copyright 2004, Cai Qian <caiqian@gnome.org>
+Copyright: Copyright 2008, Michal Čihař <nijel@debian.org>
+License: GPL-2+
+ On Debian systems the full text of the GNU General Public License can be found
+ in the `/usr/share/common-licenses/GPL' file.

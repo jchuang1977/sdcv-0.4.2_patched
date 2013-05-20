@@ -1,0 +1,9 @@
+sdcv for Debian
+---------------
+
+This package alone does not contain any dictionary, becasue of licences
+problems. However, you can download them from
+http://stardict.sourceforge.net/Dictionaries.php. It will not depend on any of
+the stardict* packages.
+
+ -- Cai Qian <caiqian@debian.org>, Thu, 20 Oct 2005 21:12:29 +0100
